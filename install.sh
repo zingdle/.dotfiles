@@ -26,6 +26,7 @@ fi
 # zsh
 if exists zsh; then
     cp -rf .zshrc ~/.zshrc
+    cp -rf zsh/robbyrussell.zsh-theme ~/.oh-my-zsh/themes
 else
     echo 'zsh not installed.'
 fi
