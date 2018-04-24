@@ -1,32 +1,50 @@
 #!/bin/bash
 
-exists() {
-  command -v "$1" >/dev/null 2>&1
+# helper
+config() {
+  echo "configuring $1...";
+  if !(command -v "$1" >/dev/null 2>&1); then
+    echo "$1 not installed, skipping..."
+  else
+    config_$1
+  fi
+}
+
+# git
+config_git() {
+  cp -rf .gitconfig ~/.gitconfig
+}
+
+# pip
+config_pip() {
+  cp -rf .pip ~/.pip
+}
+
+# npm
+config_npm() {
+  cp -rf .npmrc ~/.npmrc
+}
+
+# zsh
+config_zsh() {
+  cp -rf .zshrc ~/.zshrc
+  # oh-my-zsh
+  if ! -d ~/.oh-my-zsh; then
+    echo 'oh-my-zsh not installed, skipping...'
+    return
+  else
+    cp -rf zsh/robbyrussell.zsh-theme ~/.oh-my-zsh/themes
+    git submodule init
+    git submodule update
+    fi
 }
 
 # icons and themes
 cp -rf .icons ~/.icons
 cp -rf .themes ~/.themes
 
-# pip
-if exists pip; then
-    cp -rf .pip ~/.pip
-else
-    echo 'pip not installed.'
-fi
-
-# npm
-if exists npm; then
-    [ ! -d ~/.npm-global ] && mkdir ~/.npm-global
-    cp -rf .npmrc ~/.npmrc
-else
-    echo 'npm not installed.'
-fi
-
-# zsh
-if exists zsh; then
-    cp -rf .zshrc ~/.zshrc
-    cp -rf zsh/robbyrussell.zsh-theme ~/.oh-my-zsh/themes
-else
-    echo 'zsh not installed.'
-fi
+# all the others
+config git
+config pip
+config npm
+config zsh
