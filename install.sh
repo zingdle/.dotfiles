@@ -4,7 +4,7 @@
 config() {
   echo "configuring $1...";
   if !(command -v "$1" >/dev/null 2>&1); then
-    if ["$2" -eq "necessary"]; then
+    if [ "$2" == "necessary" ]; then
       echo "$1 not installed, exiting..."
       exit 1
     else
@@ -45,6 +45,7 @@ config_zsh() {
     cp -rf zsh/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
   fi
 }
+
 
 # icons and themes
 cp -rf .icons ~/.icons
