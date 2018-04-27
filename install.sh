@@ -42,7 +42,7 @@ config_zsh() {
     git submodule init
     git submodule update
     cp -rf zsh/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-    cp -rf zsh/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+    cp -rf zsh/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
   fi
 }
 
