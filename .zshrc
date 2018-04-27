@@ -97,3 +97,5 @@ source $ZSH/oh-my-zsh.sh
 
 # npm
 export PATH=~/.npm-global/bin:$PATH
+
+alias pc=proxychains4
