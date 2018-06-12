@@ -3,3 +3,5 @@
 	email = zingdle@gmail.com
 [core]
 	editor = vim
+[alias]
+    s = "!f() { git add . && git commit -m\"save\"; }; f"
