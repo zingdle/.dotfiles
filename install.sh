@@ -46,6 +46,10 @@ config_zsh() {
   fi
 }
 
+# vim
+config_vim() {
+  cp -rf .vimrc ~/.vimrc
+}
 
 # icons and themes
 cp -rf .icons ~/.icons
@@ -56,3 +60,4 @@ config git necessary
 config pip
 config npm
 config zsh
+config vim
