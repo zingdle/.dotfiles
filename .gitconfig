@@ -4,4 +4,4 @@
 [core]
 	editor = vim
 [alias]
-    s = "!f() { git add . && git commit -m\"save\"; }; f"
+    save = "!f() { git add . && git commit -m\"save\"; }; f"
