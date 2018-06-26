@@ -4,6 +4,6 @@
 [core]
 	editor = vim
 [alias]
-    save = "!f() { git add . && git commit -m\"save\"; }; f"
+	save = "!f() { git add . && git commit -m\"save\"; }; f"
 [push]
-    default = simple
+	default = simple
