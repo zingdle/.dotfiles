@@ -1,16 +1,88 @@
-set number
+call plug#begin('~/.vim/plugged')
+
+" color scheme
+Plug 'joshdick/onedark.vim'
+
+" welcome page
+Plug 'mhinz/vim-startify'
+
+" airline below
+Plug 'bling/vim-airline'
+
+" comment
+" <leader>ci Toggle the comment state of selected lines
+Plug 'scrooloose/nerdcommenter'
+
+" indent line
+Plug 'Yggdroot/indentLine'
+
+" ctrl-p
+Plug 'ctrlpvim/ctrlp.vim'
+
+" file sidebar
+" <leader>v Find file in nerdtree
+" <leader>g Toggle nerdtree
+Plug 'scrooloose/nerdtree'
+
+" underline all the word under the cursor
+Plug 'itchyny/vim-cursorword'
+
+" fast moves
+" <leader><leader>w find following word
+" <leader><leader>b find previous word
+" <leader><leader>j find following line
+" <leader><leader>k find previous line
+" <leader><leader>h find within this line
+" <leader><leader>l find within this line
+" <leader><leader>s find with search
+" 
+Plug 'easymotion/vim-easymotion'
+
+" highlight all search result
+"Plug 'haya14busa/incsearch.vim'
+
+" pair brackets
+Plug 'jiangmiao/auto-pairs'
+
+" surround
+" cs"' change surround from " to '
+" ds" delete surround "
+" ysiw" add current word by surround "
+Plug 'tpope/vim-surround'
+
+" multiple cursors
+" <C-n> select current word(or use v/V to visual mode to select)
+" <C-n> select next same word
+" c change multiple words
+Plug 'terryma/vim-multiple-cursors'
+
+call plug#end()
+
+" map leader
+let mapleader = ","
+
+" color scheme
+color onedark
+
+" nerdtree
+nmap <leader>v :NERDTreeFind<cr>
+nmap <leader>g :NERDTreeToggle<cr>
+
+" syntax highlight
 syntax on
+
+" line number
+set number
 set relativenumber
-set nocompatible
-set nowrap                       " 不折叠显示长行
-set sidescroll=1                 " 平滑显示长行
-set ruler                        " 底部显示行号
-set incsearch                    " 输入字符马上查找
-set tabstop=4                    " 1 tab = 4 spaces
-set cursorline                   " 高亮当前行
-set shiftwidth=4                 " Indents will have a width of 4
-set softtabstop=4                " Sets the number of columns for a TAB
-set expandtab                    " Expand TABs to spaces
-set showcmd                      " 右下角显示现有的命令
-set autowrite                    " 自动保存
-set showmatch                    " 输入时显示相对应的括号
+
+" highlight current line
+set cursorline
+
+" tab
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
+
+" search while typing
+set incsearch
