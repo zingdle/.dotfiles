@@ -38,9 +38,6 @@ Plug 'itchyny/vim-cursorword'
 " 
 Plug 'easymotion/vim-easymotion'
 
-" highlight all search result
-"Plug 'haya14busa/incsearch.vim'
-
 " pair brackets
 Plug 'jiangmiao/auto-pairs'
 
