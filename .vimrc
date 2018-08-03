@@ -1,5 +1,8 @@
 call plug#begin('~/.vim/plugged')
 
+" terminal enhancement
+Plug 'wincent/terminus'
+
 " color scheme
 Plug 'joshdick/onedark.vim'
 
@@ -53,37 +56,17 @@ Plug 'tpope/vim-surround'
 " c change multiple words
 Plug 'terryma/vim-multiple-cursors'
 
+" git support
 Plug 'airblade/vim-gitgutter'
 
 call plug#end()
-
-" true color support for vim8+
-if has("termguicolors")
-    set termguicolors
-endif
 
 " map leader
 let mapleader = ","
 
 " color scheme
+set termguicolors
 color onedark
-
-" toggle transparency by <C-t>
-let t:is_transparent = 0
-function! Toggle_transparent()
-    if t:is_transparent == 0
-        hi Normal guibg=NONE ctermbg=NONE
-        let t:is_transparent = 1
-    else
-        set background=dark
-        let t:is_transparent = 0
-    endif
-endfunction
-nnoremap <C-t> : call Toggle_transparent()<cr>
-
-" nerdtree
-nmap <leader>v :NERDTreeFind<cr>
-nmap <leader>g :NERDTreeToggle<cr>
 
 " syntax highlight
 syntax on
@@ -103,3 +86,24 @@ set smarttab
 
 " search while typing
 set incsearch
+
+" toggle transparency by <C-t>
+let t:is_transparent = 0
+function! Toggle_transparent()
+    if t:is_transparent == 0
+        hi Normal guibg=NONE ctermbg=NONE
+        let t:is_transparent = 1
+    else
+        set background=dark
+        let t:is_transparent = 0
+    endif
+endfunction
+nnoremap <C-t> : call Toggle_transparent()<cr>
+
+" nerdtree
+nmap <leader>v :NERDTreeFind<cr>
+nmap <leader>g :NERDTreeToggle<cr>
+
+" vim-gitgutter
+set updatetime=100
+
