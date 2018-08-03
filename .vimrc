@@ -59,6 +59,9 @@ Plug 'terryma/vim-multiple-cursors'
 " git support
 Plug 'airblade/vim-gitgutter'
 
+" auto save
+Plug '907th/vim-auto-save'
+
 call plug#end()
 
 " map leader
@@ -106,4 +109,7 @@ nmap <leader>g :NERDTreeToggle<cr>
 
 " vim-gitgutter
 set updatetime=100
+
+" auto save
+let g:auto_save = 1
 
