@@ -68,7 +68,6 @@ call plug#end()
 let mapleader = ","
 
 " color scheme
-set termguicolors
 color onedark
 
 " syntax highlight
