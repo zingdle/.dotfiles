@@ -112,3 +112,6 @@ set updatetime=100
 " auto save
 let g:auto_save = 1
 
+" nerdcommenter
+let g:NERDSpaceDelims = 1
+
