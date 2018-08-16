@@ -62,6 +62,9 @@ Plug 'airblade/vim-gitgutter'
 " auto save
 Plug '907th/vim-auto-save'
 
+" code-completion
+Plug 'Valloric/YouCompleteMe'
+
 call plug#end()
 
 " map leader
@@ -102,6 +105,9 @@ function! Toggle_transparent()
 endfunction
 nnoremap <C-t> : call Toggle_transparent()<cr>
 
+" toggle shell by <C-d>
+noremap <C-d> :sh<cr>
+
 " nerdtree
 nmap <leader>v :NERDTreeFind<cr>
 nmap <leader>g :NERDTreeToggle<cr>
@@ -114,4 +120,8 @@ let g:auto_save = 1
 
 " nerdcommenter
 let g:NERDSpaceDelims = 1
+
+" youcompleteme
+let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
+
 
