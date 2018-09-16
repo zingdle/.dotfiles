@@ -51,6 +51,11 @@ config_vim() {
   cp -rf .vimrc ~/.vimrc
 }
 
+# sqlite3
+config_sqlite() {
+  cp -rf .sqliterc ~/.sqliterc
+}
+
 # icons and themes
 cp -rf .icons ~/.icons
 cp -rf .themes ~/.themes
@@ -61,3 +66,4 @@ config pip
 config npm
 config zsh
 config vim
+config sqlite
