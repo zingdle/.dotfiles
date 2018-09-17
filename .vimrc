@@ -141,3 +141,9 @@ set clipboard=unnamedplus
 let g:airline#extensions#tabline#enabled = 1
 nnoremap <C-J> :bnext<CR>
 nnoremap <C-K> :bprev<CR>
+
+" resize current buffer by +/- 5 
+nnoremap <C-left> :vertical resize -5<cr>
+nnoremap <C-right> :vertical resize +5<cr>
+nnoremap <C-down> :resize +5<cr>
+nnoremap <C-up> :resize -5<cr>
