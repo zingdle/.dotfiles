@@ -77,7 +77,7 @@ Plug 'roman/golden-ratio'
 call plug#end()
 
 " map leader
-let mapleader = ";"
+let mapleader = ","
 
 " color scheme
 color onedark
