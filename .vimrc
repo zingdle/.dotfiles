@@ -15,7 +15,7 @@ Plug 'joshdick/onedark.vim'
 " welcome page
 Plug 'mhinz/vim-startify'
 
-" airline below
+" airline
 Plug 'bling/vim-airline'
 
 " comment
@@ -71,6 +71,9 @@ Plug '907th/vim-auto-save'
 " code-completion
 Plug 'Valloric/YouCompleteMe'
 
+" window split
+Plug 'roman/golden-ratio'
+
 call plug#end()
 
 " map leader
@@ -101,6 +104,7 @@ set incsearch
 " toggle transparency by <C-t>
 let t:is_transparent = 0
 function! Toggle_transparent()
+    silent! w
     if t:is_transparent == 0
         hi Normal guibg=NONE ctermbg=NONE
         let t:is_transparent = 1
@@ -132,3 +136,8 @@ let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
 
 " clipboard
 set clipboard=unnamedplus
+
+" tab navigation
+let g:airline#extensions#tabline#enabled = 1
+nnoremap <C-J> :bnext<CR>
+nnoremap <C-K> :bprev<CR>
