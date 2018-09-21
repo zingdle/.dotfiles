@@ -93,8 +93,8 @@ set relativenumber
 set cursorline
 
 " tab
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set smarttab
 
@@ -127,6 +127,7 @@ set updatetime=100
 
 " auto save
 let g:auto_save = 1
+let g:auto_save_events = ["InsertLeave", "TextChanged", "TextChangedI"]
 
 " nerdcommenter
 let g:NERDSpaceDelims = 1
