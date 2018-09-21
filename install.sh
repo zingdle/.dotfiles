@@ -52,7 +52,7 @@ config_vim() {
 }
 
 # sqlite3
-config_sqlite() {
+config_sqlite3() {
   cp -rf .sqliterc ~/.sqliterc
 }
 
@@ -66,4 +66,4 @@ config pip
 config npm
 config zsh
 config vim
-config sqlite
+config sqlite3
