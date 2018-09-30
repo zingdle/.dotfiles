@@ -158,3 +158,4 @@ noremap <Right> <NOP>
 " smooth scroll
 noremap j jzz
 noremap k kzz
+nnoremap G Gzz
