@@ -127,7 +127,7 @@ set updatetime=100
 
 " auto save
 let g:auto_save = 1
-let g:auto_save_events = ["InsertLeave", "TextChanged", "TextChangedI"]
+let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
 " nerdcommenter
 let g:NERDSpaceDelims = 1
@@ -148,3 +148,13 @@ nnoremap <C-left> :vertical resize -5<cr>
 nnoremap <C-right> :vertical resize +5<cr>
 nnoremap <C-down> :resize +5<cr>
 nnoremap <C-up> :resize -5<cr>
+
+" hard mode
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+" smooth scroll
+noremap j jzz
+noremap k kzz
