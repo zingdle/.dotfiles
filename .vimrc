@@ -77,7 +77,7 @@ Plug 'roman/golden-ratio'
 call plug#end()
 
 " map leader
-let mapleader = ","
+let mapleader = " "
 
 " color scheme
 color onedark
@@ -113,10 +113,10 @@ function! Toggle_transparent()
         let t:is_transparent = 0
     endif
 endfunction
-nnoremap <C-t> : call Toggle_transparent()<cr>
+" nnoremap <C-t> : call Toggle_transparent()<cr>
 
-" toggle shell by <C-d>
-noremap <C-d> :sh<cr>
+" toggle shell by <C-q>
+noremap <C-t> :sh<cr>
 
 " nerdtree
 nmap <leader>v :NERDTreeFind<cr>
@@ -156,6 +156,10 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 
 " smooth scroll
-noremap j jzz
-noremap k kzz
+nnoremap j jzz
+nnoremap k kzz
 nnoremap G Gzz
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap <C-f> <C-f>zz
+nnoremap <C-b> <C-b>zz
