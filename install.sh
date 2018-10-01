@@ -43,6 +43,7 @@ config_zsh() {
     git submodule update
     cp -rf zsh/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
     cp -rf zsh/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    cp -rf .ycm_extra_conf.py ~/.ycm_extra_conf.py
   fi
 }
 
