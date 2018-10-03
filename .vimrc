@@ -74,14 +74,19 @@ Plug 'Valloric/YouCompleteMe'
 " window split
 Plug 'roman/golden-ratio'
 
+" function prototype
 Plug 'Shougo/echodoc.vim'
 
+" autoformat
 Plug 'Chiel92/vim-autoformat'
 
+" static anaylysis
 Plug 'w0rp/ale'
 
+" syntax highlight for cpp
 Plug 'octol/vim-cpp-enhanced-highlight'
 
+" gof/got
 Plug 'justinmk/vim-gtfo'
 
 call plug#end()
@@ -97,7 +102,7 @@ syntax on
 
 " line number
 set number
-" set relativenumber
+set relativenumber
 
 " highlight current line
 set cursorline
@@ -108,21 +113,23 @@ set shiftwidth=2
 set expandtab
 set smarttab
 
-" search while typing
+" search
 set incsearch
+set ignorecase
+set smartcase
 
 " toggle transparency by <C-t>
-let t:is_transparent = 0
-function! Toggle_transparent()
-  silent! w
-  if t:is_transparent == 0
-    hi Normal guibg=NONE ctermbg=NONE
-    let t:is_transparent = 1
-  else
-    set background=dark
-    let t:is_transparent = 0
-  endif
-endfunction
+" let t:is_transparent = 0
+" function! Toggle_transparent()
+" silent! w
+" if t:is_transparent == 0
+" hi Normal guibg=NONE ctermbg=NONE
+" let t:is_transparent = 1
+" else
+" set background=dark
+" let t:is_transparent = 0
+" endif
+" endfunction
 " nnoremap <C-t> : call Toggle_transparent()<cr>
 
 " toggle shell by <C-t>
@@ -143,23 +150,21 @@ let g:NERDSpaceDelims = 1
 
 " youcompleteme
 let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
+let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_strings = 0
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_show_diagnostics_ui = 0
+set completeopt=menu,menuone
+" let g:ycm_key_invoke_completion = '<c-z>'
 
 let g:ycm_semantic_triggers =  {
       \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
       \ 'cs,lua,javascript': ['re!\w{2}'],
       \ }
-" let g:ycm_key_invoke_completion = '<c-z>'
-
-set completeopt=menu,menuone
-let g:ycm_add_preview_to_completeopt = 0
-
-let g:ycm_show_diagnostics_ui = 0
-
-" let g:ycm_complete_in_comments = 1
 
 " echodoc.vim
 let g:echodoc_enable_at_startup = 1
-set cmdheight=2
+set noshowmode
 
 " autoformat when saving
 au BufWrite * :Autoformat
