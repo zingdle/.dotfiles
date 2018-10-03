@@ -81,6 +81,9 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'w0rp/ale'
 
 Plug 'octol/vim-cpp-enhanced-highlight'
+
+Plug 'justinmk/vim-gtfo'
+
 call plug#end()
 
 " map leader
@@ -94,7 +97,7 @@ syntax on
 
 " line number
 set number
-set relativenumber
+" set relativenumber
 
 " highlight current line
 set cursorline
@@ -193,3 +196,11 @@ nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 nnoremap <C-f> <C-f>zz
 nnoremap <C-b> <C-b>zz
+
+"map jj to esc..
+inoremap jj <c-[>
+cnoremap <expr> j
+      \ getcmdline()[getcmdpos()-2] ==# 'j' ? "\<BS>\<C-c>" : 'j'
+
+inoremap j<Space>     j
+cnoremap j<Space>     j
