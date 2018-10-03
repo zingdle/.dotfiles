@@ -61,6 +61,11 @@ config_sqlite3() {
 cp -rf .icons ~/.icons
 cp -rf .themes ~/.themes
 
+# fonts
+FONT_PATH=$HOME/.config/fontconfig/conf.d
+mkdir -p $FONT_PATH
+cp -rf 64-language-selector-prefer.conf $FONT_PATH
+
 # all the others
 config git necessary
 config pip
