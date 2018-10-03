@@ -1,6 +1,6 @@
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -44,7 +44,7 @@ Plug 'itchyny/vim-cursorword'
 " <leader><leader>h find within this line
 " <leader><leader>l find within this line
 " <leader><leader>s find with search
-" 
+"
 Plug 'easymotion/vim-easymotion'
 
 " pair brackets
@@ -79,6 +79,8 @@ Plug 'Shougo/echodoc.vim'
 Plug 'Chiel92/vim-autoformat'
 
 Plug 'w0rp/ale'
+
+Plug 'octol/vim-cpp-enhanced-highlight'
 call plug#end()
 
 " map leader
@@ -109,14 +111,14 @@ set incsearch
 " toggle transparency by <C-t>
 let t:is_transparent = 0
 function! Toggle_transparent()
-    silent! w
-    if t:is_transparent == 0
-        hi Normal guibg=NONE ctermbg=NONE
-        let t:is_transparent = 1
-    else
-        set background=dark
-        let t:is_transparent = 0
-    endif
+  silent! w
+  if t:is_transparent == 0
+    hi Normal guibg=NONE ctermbg=NONE
+    let t:is_transparent = 1
+  else
+    set background=dark
+    let t:is_transparent = 0
+  endif
 endfunction
 " nnoremap <C-t> : call Toggle_transparent()<cr>
 
@@ -132,7 +134,6 @@ set updatetime=100
 
 " auto save
 let g:auto_save = 1
-let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
 " nerdcommenter
 let g:NERDSpaceDelims = 1
@@ -160,6 +161,9 @@ set cmdheight=2
 " autoformat when saving
 au BufWrite * :Autoformat
 
+" ale
+let g:ale_lint_on_text_changed = 'never'
+
 " clipboard
 set clipboard=unnamedplus
 
@@ -168,7 +172,7 @@ let g:airline#extensions#tabline#enabled = 1
 nnoremap <C-J> :bnext<CR>
 nnoremap <C-K> :bprev<CR>
 
-" resize current buffer by +/- 5 
+" resize current buffer by +/- 5
 nnoremap <C-left> :vertical resize -5<cr>
 nnoremap <C-right> :vertical resize +5<cr>
 nnoremap <C-down> :resize +5<cr>
