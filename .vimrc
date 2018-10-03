@@ -169,8 +169,9 @@ set clipboard=unnamedplus
 
 " tab navigation
 let g:airline#extensions#tabline#enabled = 1
-nnoremap <C-J> :bnext<CR>
-nnoremap <C-K> :bprev<CR>
+nnoremap <leader>j :bnext<CR>
+nnoremap <leader>k :bprev<CR>
+nnoremap <leader>w :bdelete<CR>
 
 " resize current buffer by +/- 5
 nnoremap <C-left> :vertical resize -5<cr>
