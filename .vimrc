@@ -74,6 +74,11 @@ Plug 'Valloric/YouCompleteMe'
 " window split
 Plug 'roman/golden-ratio'
 
+Plug 'Shougo/echodoc.vim'
+
+Plug 'Chiel92/vim-autoformat'
+
+Plug 'w0rp/ale'
 call plug#end()
 
 " map leader
@@ -115,7 +120,7 @@ function! Toggle_transparent()
 endfunction
 " nnoremap <C-t> : call Toggle_transparent()<cr>
 
-" toggle shell by <C-q>
+" toggle shell by <C-t>
 noremap <C-t> :sh<cr>
 
 " nerdtree
@@ -134,6 +139,26 @@ let g:NERDSpaceDelims = 1
 
 " youcompleteme
 let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
+
+let g:ycm_semantic_triggers =  {
+      \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+      \ 'cs,lua,javascript': ['re!\w{2}'],
+      \ }
+" let g:ycm_key_invoke_completion = '<c-z>'
+
+set completeopt=menu,menuone
+let g:ycm_add_preview_to_completeopt = 0
+
+let g:ycm_show_diagnostics_ui = 0
+
+" let g:ycm_complete_in_comments = 1
+
+" echodoc.vim
+let g:echodoc_enable_at_startup = 1
+set cmdheight=2
+
+" autoformat when saving
+au BufWrite * :Autoformat
 
 " clipboard
 set clipboard=unnamedplus
