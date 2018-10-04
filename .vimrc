@@ -11,6 +11,8 @@ Plug 'wincent/terminus'
 
 " color scheme
 Plug 'joshdick/onedark.vim'
+Plug 'chriskempson/base16-vim'
+Plug 'vim-airline/vim-airline-themes'
 
 " welcome page
 Plug 'mhinz/vim-startify'
@@ -95,7 +97,8 @@ call plug#end()
 let mapleader = " "
 
 " color scheme
-color onedark
+set termguicolors
+color base16-onedark
 
 " syntax highlight
 syntax on
@@ -118,6 +121,10 @@ set incsearch
 set ignorecase
 set smartcase
 
+" split
+set splitbelow
+set splitright
+
 " toggle transparency by <C-t>
 " let t:is_transparent = 0
 " function! Toggle_transparent()
@@ -131,9 +138,6 @@ set smartcase
 " endif
 " endfunction
 " nnoremap <C-t> : call Toggle_transparent()<cr>
-
-" toggle shell by <C-t>
-noremap <C-t> :sh<cr>
 
 " nerdtree
 nmap <leader>v :NERDTreeFind<cr>
@@ -209,3 +213,10 @@ cnoremap <expr> j
 
 inoremap j<Space>     j
 cnoremap j<Space>     j
+
+" terminal
+tnoremap <ESC> <C-w>:q!<CR>
+command! T  call term_start('zsh', {"term_finish": "close", "curwin": 1})
+command! TS call term_start('zsh', {"term_finish": "close"})
+command! TV call term_start('zsh', {"term_finish": "close", "vertical": 1})
+command! TT tab call term_start('zsh', {"term_finish": "close"})
