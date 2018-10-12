@@ -57,6 +57,10 @@ config_sqlite3() {
   cp -rf .sqliterc ~/.sqliterc
 }
 
+config_youtube-dl() {
+  cp -rf .youtube-dl.conf ~/.config/.youtube-dl.conf
+}
+
 # icons and themes
 cp -rf .icons ~/.icons
 cp -rf .themes ~/.themes
@@ -73,3 +77,4 @@ config npm
 config zsh
 config vim
 config sqlite3
+config youtube-dl
