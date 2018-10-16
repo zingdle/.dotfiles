@@ -38,7 +38,7 @@ config_zsh() {
     echo 'oh-my-zsh not installed, skipping...'
     return
   else
-    cp -rf zsh/robbyrussell.zsh-theme ~/.oh-my-zsh/themes
+    cp -rf zsh/robbyrussell-fix.zsh-theme ~/.oh-my-zsh/themes
     git submodule init
     git submodule update
     cp -rf zsh/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
@@ -58,7 +58,7 @@ config_sqlite3() {
 }
 
 config_youtube-dl() {
-  cp -rf .youtube-dl.conf ~/.config/.youtube-dl.conf
+cp -rf .youtube-dl.conf ~/.config/.youtube-dl.conf
 }
 
 # icons and themes
