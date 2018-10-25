@@ -18,6 +18,7 @@ config() {
 # git
 config_git() {
   cp -rf .gitconfig ~/.gitconfig
+  cp -rf .gitignore_global ~/.gitignore_global
 }
 
 # pip

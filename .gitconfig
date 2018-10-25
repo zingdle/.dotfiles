@@ -3,6 +3,7 @@
 	email = zingdle@gmail.com
 [core]
 	editor = vim
+	excludesfile = /home/zingdle/.gitignore_global
 [alias]
 	save = "!f() { git add . && git commit -m\"save\"; }; f"
 [push]
