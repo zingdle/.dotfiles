@@ -99,3 +99,4 @@ source $ZSH/oh-my-zsh.sh
 export PATH=~/.npm-global/bin:$PATH
 
 alias pc=proxychains4
+alias tmp='cd $(mktemp -d)'
