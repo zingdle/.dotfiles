@@ -59,7 +59,7 @@ config_sqlite3() {
 }
 
 config_youtube-dl() {
-cp -rf .youtube-dl.conf ~/.config/.youtube-dl.conf
+cp -rf youtube-dl.conf ~/.config/youtube-dl.conf
 }
 
 # icons and themes
