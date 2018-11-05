@@ -100,5 +100,11 @@ export PATH=~/.local/bin:$PATH
 # npm
 export PATH=~/.npm-global/bin:$PATH
 
+# cuda
+export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64\
+${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
 alias pc=proxychains4
 alias tmp='cd $(mktemp -d)'
+
