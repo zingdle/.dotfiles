@@ -48,16 +48,10 @@ Plug 'Chiel92/vim-autoformat'
 " syntax highlight for cpp
 Plug 'octol/vim-cpp-enhanced-highlight'
 
-" ycm
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-
 " show doc
 Plug 'Shougo/echodoc.vim'
 
-
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-Plug 'w0rp/ale'
 
 Plug 'autozimu/LanguageClient-neovim', {
             \ 'branch': 'next',
@@ -113,6 +107,9 @@ set wildmenu
 " don't show mode
 set noshowmode
 
+" completer
+set completeopt=menu,menuone
+
 "map jj to esc..
 inoremap jj <c-[>
 cnoremap <expr> j getcmdline()[getcmdpos()-2] ==# 'j' ? "\<BS>\<C-c>" : 'j'
@@ -129,35 +126,15 @@ let g:NERDSpaceDelims=1
 let g:formatters_python = ['autopep8']
 au BufWrite * :Autoformat
 
-" ycm
-let g:ycm_min_num_identifier_candidate_chars=2
-set completeopt=menu,menuone
-nnoremap <leader>p :vs \| YcmCompleter GoToDefinition<cr>
-nnoremap <leader>g :YcmCompleter GoToDefinition<cr>
-
-let g:ycm_semantic_triggers={
-            \ 'c,cpp,python': ['re!\w{2}'],
-            \ }
-let g:ycm_filetype_whitelist = {
-            \ "c": 1,
-            \ "cpp": 1,
-            \ }
-
 " echodoc
 let g:echodoc#enable_at_startup=1
-
-
-
 
 " deoplete
 let g:deoplete#enable_at_startup=1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
-" ale
-let g:ale_sign_column_always=1
-let g:airline#extensions#ale#enabled=1
-
 " LC
+set scl=yes
 let g:LanguageClient_serverCommands={
             \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
             \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
@@ -165,7 +142,6 @@ let g:LanguageClient_serverCommands={
 
 let g:LanguageClient_loadSettings=1
 let g:LanguageClient_settingsPath='/home/zingdle/.config/nvim/lsp_settings.json'
-let g:LanguageClient_diagnosticsEnable=0
 
 nnoremap <silent> gh :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
