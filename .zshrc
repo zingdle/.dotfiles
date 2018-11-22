@@ -95,7 +95,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PATH=~/.local/bin:$PATH
+# .local
+export PATH=$HOME/.local/bin:$PATH
+export LD_LIBRARY_PATH=$HOME/.local/lib:$LD_LIBRARY_PATH
+export LIBRARY_PATH=$HOME/.local/lib:$LIBRARY_PATH
+export C_PATH=$HOME/.local/lib:$C_PATH
 
 # npm
 export PATH=~/.npm-global/bin:$PATH
@@ -104,7 +108,3 @@ export PATH=~/.npm-global/bin:$PATH
 export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64\
 ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-
-alias pc=proxychains4
-alias tmp='cd $(mktemp -d)'
-
