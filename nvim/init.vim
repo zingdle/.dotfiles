@@ -62,6 +62,14 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+
+
+
+
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdtree'
+
+
 call plug#end()
 
 " map leader
@@ -110,6 +118,12 @@ set noshowmode
 " completer
 set completeopt=menu,menuone
 
+" windows resize
+nnoremap <Left> :vertical resize +2<CR>
+nnoremap <Right> :vertical resize -2<CR>
+nnoremap <Up> :resize +2<CR>
+nnoremap <Down> :resize -2<CR>
+
 "map jj to esc..
 inoremap jj <c-[>
 cnoremap <expr> j getcmdline()[getcmdpos()-2] ==# 'j' ? "\<BS>\<C-c>" : 'j'
@@ -148,3 +162,54 @@ nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> gr :call LanguageClient#textDocument_references()<CR>
 nnoremap <silent> gs :call LanguageClient#textDocument_documentSymbol()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+" NERDTree
+map <leader>t :NERDTreeToggle<CR>
+let NERDTreeShowLineNumbers=1
+let NERDTreeAutoCenter=1
+let NERDTreeShowHidden=1
+let g:NERDTreeIndicatorMapCustom = {
+            \ "Modified"  : "✹",
+            \ "Staged"    : "✚",
+            \ "Untracked" : "✭",
+            \ "Renamed"   : "➜",
+            \ "Unmerged"  : "═",
+            \ "Deleted"   : "✖",
+            \ "Dirty"     : "✗",
+            \ "Clean"     : "✔︎",
+            \ "Unknown"   : "?"
+            \ }
+
+" tab
+nnoremap <leader>h gt
+nnoremap <leader>l gT
+
+" terminal
+command! -nargs=* T split | terminal <args>
+command! -nargs=* VT vsplit | terminal <args>
+
+let g:term_buf = 0
+function! Term_toggle()
+    1wincmd w
+    if g:term_buf == bufnr("")
+        setlocal bufhidden=hide
+        close
+    else
+        rightbelow new
+        12winc -
+        try
+            exec "buffer ".g:term_buf
+        catch
+            call termopen($SHELL, {"detach": 0})
+            let g:term_buf = bufnr("")
+        endtry
+        set laststatus=0
+        startinsert!
+    endif
+endfunction
+nnoremap <f4> :call Term_toggle()<cr>
+
+" Terminal go back to normal mode
+tnoremap <Esc> <C-\><C-n>
+" When switching to terminal windows it goes into insert mode automatically
+au BufEnter * if &buftype == 'terminal' | :startinsert | endif
