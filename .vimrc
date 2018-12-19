@@ -82,7 +82,7 @@ set number
 set relativenumber
 
 " leave space
-set scrolloff=10
+set scrolloff=5
 
 " highlight current line
 set cursorline
@@ -107,12 +107,6 @@ set clipboard=unnamedplus
 " wildmenu
 set wildmenu
 
-" don't show mode
-set noshowmode
-
-" completer
-set completeopt=menu,menuone
-
 " windows resize
 nnoremap <Left> :vertical resize +2<CR>
 nnoremap <Right> :vertical resize -2<CR>
@@ -133,12 +127,13 @@ let g:NERDSpaceDelims=1
 
 " vim-autoformat
 let g:formatters_python = ['autopep8']
-let b:formatdef_custom_cpp = '"clang-format -style=Google"'
+let b:formatdef_custom_cpp = '"clang-format -style=LLVM"'
 let g:formatters_cpp = ['custom_cpp']
-au BufWrite * :Autoformat
+" au BufWrite * :Autoformat
 
 " echodoc
 let g:echodoc#enable_at_startup=1
+set noshowmode
 
 " NERDTree
 map <leader>t :NERDTreeToggle<CR>
@@ -156,3 +151,38 @@ let g:NERDTreeIndicatorMapCustom = {
             \ "Clean"     : "✔︎",
             \ "Unknown"   : "?"
             \ }
+
+" ycm
+set completeopt=menu,menuone
+" let g:ycm_goto_buffer_command = 'vertical-split'
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings = 1
+let g:ycm_semantic_triggers =  {
+            \ 'c,cpp,python': ['re!\w{2}'],
+            \ }
+let g:ycm_filetype_whitelist = {
+            \ "c":1,
+            \ "cpp":1,
+            \ "sh":1,
+            \ }
+
+nnoremap <leader>ld :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+function SetYCMShortcuts()
+    " nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
+    " nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
+    " nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
+    " nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
+    " nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
+    " nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<CR>
+    " nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
+    " nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
+    " nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
+    " nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
+endfunction()
+
+augroup YCM
+    autocmd!
+    autocmd FileType cpp,c call SetYCMShortcuts()
+augroup END

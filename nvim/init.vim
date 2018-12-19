@@ -1,8 +1,10 @@
+" pip3 install neovim
+" sudo apt install clang-format
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
     execute '!curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 endif
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 
 " color scheme
 Plug 'chriskempson/base16-vim'
@@ -48,9 +50,14 @@ Plug 'Chiel92/vim-autoformat'
 " syntax highlight for cpp
 Plug 'octol/vim-cpp-enhanced-highlight'
 
+" nerdtree
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdtree'
+
 " show doc
 Plug 'Shougo/echodoc.vim'
 
+" deoplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 Plug 'autozimu/LanguageClient-neovim', {
@@ -58,17 +65,9 @@ Plug 'autozimu/LanguageClient-neovim', {
             \ 'do': 'bash install.sh',
             \ }
 
-" Multi-entry selection UI. FZF
+" fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
-
-
-
-
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'scrooloose/nerdtree'
-
 
 call plug#end()
 
@@ -84,10 +83,10 @@ syntax on
 
 " line number
 set number
-set relativenumber
+" set relativenumber
 
 " leave space
-set scrolloff=10
+set scrolloff=7
 
 " highlight current line
 set cursorline
@@ -112,12 +111,6 @@ set clipboard=unnamedplus
 " wildmenu
 set wildmenu
 
-" don't show mode
-set noshowmode
-
-" completer
-set completeopt=menu,menuone
-
 " windows resize
 nnoremap <Left> :vertical resize +2<CR>
 nnoremap <Right> :vertical resize -2<CR>
@@ -134,40 +127,17 @@ cnoremap j<Space> j
 set updatetime=100
 
 " nerdcommenter
-let g:NERDSpaceDelims=1
+let g:NERDSpaceDelims = 1
 
 " vim-autoformat
 let g:formatters_python = ['autopep8']
-au BufWrite * :Autoformat
-
-" echodoc
-let g:echodoc#enable_at_startup=1
-
-" deoplete
-let g:deoplete#enable_at_startup=1
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" LC
-set scl=yes
-let g:LanguageClient_serverCommands={
-            \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
-            \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
-            \ }
-
-let g:LanguageClient_loadSettings=1
-let g:LanguageClient_settingsPath='/home/zingdle/.config/nvim/lsp_settings.json'
-
-nnoremap <silent> gh :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> gr :call LanguageClient#textDocument_references()<CR>
-nnoremap <silent> gs :call LanguageClient#textDocument_documentSymbol()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " NERDTree
 map <leader>t :NERDTreeToggle<CR>
-let NERDTreeShowLineNumbers=1
-let NERDTreeAutoCenter=1
-let NERDTreeShowHidden=1
+let g:NERDTreeWinPos = "right"
+let NERDTreeShowLineNumbers = 1
+let NERDTreeAutoCenter = 1
+let NERDTreeShowHidden = 1
 let g:NERDTreeIndicatorMapCustom = {
             \ "Modified"  : "✹",
             \ "Staged"    : "✚",
@@ -180,36 +150,55 @@ let g:NERDTreeIndicatorMapCustom = {
             \ "Unknown"   : "?"
             \ }
 
-" tab
-nnoremap <leader>h gt
-nnoremap <leader>l gT
+" echodoc
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'signature'
+set noshowmode
 
-" terminal
-command! -nargs=* T split | terminal <args>
-command! -nargs=* VT vsplit | terminal <args>
+" deoplete
+let g:deoplete#enable_at_startup = 1
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
-let g:term_buf = 0
-function! Term_toggle()
-    1wincmd w
-    if g:term_buf == bufnr("")
-        setlocal bufhidden=hide
-        close
-    else
-        rightbelow new
-        12winc -
-        try
-            exec "buffer ".g:term_buf
-        catch
-            call termopen($SHELL, {"detach": 0})
-            let g:term_buf = bufnr("")
-        endtry
-        set laststatus=0
-        startinsert!
-    endif
-endfunction
-nnoremap <f4> :call Term_toggle()<cr>
+" LC
+set signcolumn=yes
+let g:LanguageClient_serverCommands = {
+            \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
+            \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
+            \ }
+let g:LanguageClient_loadSettings = 1
+let g:LanguageClient_settingsPath = '/home/zingdle/.config/nvim/settings.json'
+let g:LanguageClient_hasSnippetSupport = 0
 
-" Terminal go back to normal mode
-tnoremap <Esc> <C-\><C-n>
-" When switching to terminal windows it goes into insert mode automatically
-au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+function SetLSPShortcuts()
+    nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
+    nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
+    nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
+    nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
+    nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
+    nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<CR>
+    nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
+    nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
+    nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
+    nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
+endfunction()
+
+augroup LSP
+    autocmd!
+    autocmd FileType cpp,c call SetLSPShortcuts()
+augroup END
+
+
+" window
+" split
+nnoremap <leader>w\ :vs<CR>
+nnoremap <leader>w- :split<CR>
+
+" navigation
+nnoremap <leader>ww <C-w><C-w>
+nnoremap <leader>wj <C-w><C-j>
+nnoremap <leader>wk <C-w><C-k>
+nnoremap <leader>wh <C-w><C-h>
+nnoremap <leader>wl <C-w><C-l>
+
+" close
+nnoremap <leader>wc <C-w>c
