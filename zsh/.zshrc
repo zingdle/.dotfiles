@@ -97,12 +97,6 @@ source $ZSH/oh-my-zsh.sh
 
 # .local
 export PATH=$HOME/.local/bin:$PATH
-export LD_LIBRARY_PATH=$HOME/.local/lib:$LD_LIBRARY_PATH
-export LIBRARY_PATH=$HOME/.local/lib:$LIBRARY_PATH
-export C_PATH=$HOME/.local/lib:$C_PATH
-
-# npm
-export PATH=~/.npm-global/bin:$PATH
 
 # cuda
 export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
