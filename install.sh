@@ -11,5 +11,6 @@ must() {
 must git
 
 for config in **/config.sh; do
+  echo running ${config}
   DIR=$(dirname "${config}") source ${config}
 done
