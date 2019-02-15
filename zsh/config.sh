@@ -8,5 +8,11 @@ if [ ! -d ~/.oh-my-zsh ]; then
 fi
 
 cp -rf $DIR/robbyrussell-fix.zsh-theme $ZSH/themes
-git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH/custom/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH/custom/plugins/zsh-syntax-highlighting
+
+if [ ! -d $ZSH/custom/plugins/zsh-autosuggestions ]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH/custom/plugins/zsh-autosuggestions
+fi
+
+if [ ! -d $ZSH/custom/plugins/zsh-syntax-highlighting ]; then
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH/custom/plugins/zsh-syntax-highlighting
+fi
