@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cp -rf $DIR/.proxychains4.conf $HOME
+cp -rf $DIR/proxychains4.conf $HOME
