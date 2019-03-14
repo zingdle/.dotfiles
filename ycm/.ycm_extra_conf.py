@@ -1,58 +1,53 @@
-# Copyright (C) 2014 Google Inc.
-#
-# This file is part of ycmd.
-#
-# ycmd is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# ycmd is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with ycmd.  If not, see <http://www.gnu.org/licenses/>.
+# https://github.com/theodelrieu/dotfiles/blob/master/.ycm_extra_conf.py
 
 import os
+import re
+import subprocess
 import ycm_core
 
-# These are the compilation flags that will be used in case there's no
-# compilation database set (by default, one is not set).
-# CHANGE THIS LIST OF FLAGS. YES, THIS IS THE DROID YOU HAVE BEEN LOOKING FOR.
+def LoadSystemIncludes():
+    regex = re.compile(ur'(?:\#include \<...\> search starts here\:)(?P<list>.*?)(?:End of search list)', re.DOTALL)
+    process = subprocess.Popen(['gcc', '-v', '-E', '-x', 'c++', '-'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    process_out, process_err = process.communicate('')
+    output = process_out + process_err
+    includes = []
+    for p in re.search(regex, output).group('list').split('\n'):
+        p = p.strip()
+        if len(p) > 0 and p.find('(framework directory)') < 0:
+            includes.append('-isystem')
+            includes.append(p)
+    return includes
+
+SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', '.m', '.mm' ]
+scriptPath = os.path.dirname(os.path.abspath(__file__));
+compilation_database_folder = os.path.join(scriptPath, 'build')
+database = None if not os.path.exists(compilation_database_folder) else ycm_core.CompilationDatabase(compilation_database_folder)
+
+# Your custom flags
 flags = [
-'-Wall',
-'-Wextra',
-'-Werror',
-'-fexceptions',
-'-DNDEBUG',
-# THIS IS IMPORTANT! Without a "-std=<something>" flag, clang won't know which
-# language to use when compiling headers. So it will guess. Badly. So C++
-# headers will be compiled as C headers. You don't want that so ALWAYS specify
-# a "-std=<something>".
-# For a C project, you would set this to something like 'c99' instead of
-# 'c++11'.
-'-std=c++11',
-# ...and the same thing goes for the magic -x option which specifies the
-# language that the files to be compiled are written in. This is mostly
-# relevant for c++ headers.
-# For a C project, you would set this to 'c' instead of 'c++'.
-'-x',
-'c++',
-'-isystem',
-'/usr/include',
-'-isystem',
-'/usr/local/include'
+    '-Wall',
+    '-Wextra',
+    '-std=c++14',
+    '-x',
+    'c++',
+    '-I',
+    '.',
 ]
 
+# Add system includes
+systemIncludes = LoadSystemIncludes()
+flags = flags + systemIncludes
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
 # compile_commands.json file to use that instead of 'flags'. See here for
 # more details: http://clang.llvm.org/docs/JSONCompilationDatabase.html
 #
+# You can get CMake to generate this file for you by adding:
+#   set( CMAKE_EXPORT_COMPILE_COMMANDS 1 )
+# to your CMakeLists.txt file.
+#
 # Most projects will NOT need to set this to anything; you can just change the
-# 'flags' list of compilation flags.
+# 'flags' list of compilation flags. Notice that YCM itself uses that approach.
 compilation_database_folder = ''
 
 if os.path.exists( compilation_database_folder ):
@@ -64,6 +59,35 @@ SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', '.m', '.mm' ]
 
 def DirectoryOfThisScript():
   return os.path.dirname( os.path.abspath( __file__ ) )
+
+
+def MakeRelativePathsInFlagsAbsolute( flags, working_directory ):
+  if not working_directory:
+    return list( flags )
+  new_flags = []
+  make_next_absolute = False
+  path_flags = [ '-isystem', '-I', '-iquote', '--sysroot=' ]
+  for flag in flags:
+    new_flag = flag
+
+    if make_next_absolute:
+      make_next_absolute = False
+      if not flag.startswith( '/' ):
+        new_flag = os.path.join( working_directory, flag )
+
+    for path_flag in path_flags:
+      if flag == path_flag:
+        make_next_absolute = True
+        break
+
+      if flag.startswith( path_flag ):
+        path = flag[ len( path_flag ): ]
+        new_flag = path_flag + os.path.join( working_directory, path )
+        break
+
+    if new_flag:
+      new_flags.append( new_flag )
+  return new_flags
 
 
 def IsHeaderFile( filename ):
@@ -89,22 +113,23 @@ def GetCompilationInfoForFile( filename ):
   return database.GetCompilationInfoForFile( filename )
 
 
-# This is the entry point; this function is called by ycmd to produce flags for
-# a file.
 def FlagsForFile( filename, **kwargs ):
-  if not database:
-    return {
-      'flags': flags,
-      'include_paths_relative_to_dir': DirectoryOfThisScript()
-    }
+  if database:
+    # Bear in mind that compilation_info.compiler_flags_ does NOT return a
+    # python list, but a "list-like" StringVec object
+    compilation_info = GetCompilationInfoForFile( filename )
+    if not compilation_info:
+      return None
 
-  compilation_info = GetCompilationInfoForFile( filename )
-  if not compilation_info:
-    return None
+    final_flags = MakeRelativePathsInFlagsAbsolute(
+      compilation_info.compiler_flags_,
+      compilation_info.compiler_working_dir_ )
 
-  # Bear in mind that compilation_info.compiler_flags_ does NOT return a
-  # python list, but a "list-like" StringVec object.
+  else:
+    relative_to = DirectoryOfThisScript()
+    final_flags = MakeRelativePathsInFlagsAbsolute( flags, relative_to )
+
   return {
-    'flags': list( compilation_info.compiler_flags_ ),
-    'include_paths_relative_to_dir': compilation_info.compiler_working_dir_
+    'flags': final_flags,
+    'do_cache': True
   }
