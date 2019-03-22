@@ -60,6 +60,7 @@ ZSH_THEME="robbyrussell-fix"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 git
+tmux
 zsh-autosuggestions
 zsh-syntax-highlighting
 )
