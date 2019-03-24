@@ -95,11 +95,3 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# .local
-export PATH=$HOME/.local/bin:$PATH
-
-# cuda
-export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda/lib64\
-${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
