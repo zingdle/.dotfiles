@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cp -rf $DIR/.zshrc $HOME
+cp -rf $DIR/.zprofile $HOME
 
 # oh-my-zsh
 if [ ! -d ~/.oh-my-zsh ]; then
