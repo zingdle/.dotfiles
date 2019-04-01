@@ -1,3 +1,7 @@
+# lang
+export LANG="en_US.UTF-8"
+export LANGUAGE="en_US:en"
+
 # .local
 export PATH=$HOME/.local/bin:$PATH
 
