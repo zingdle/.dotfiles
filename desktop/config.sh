@@ -10,8 +10,10 @@ mkdir -p $ICON_PATH
 mkdir -p $LANG_SELECT_PATH
 mkdir -p $FONT_PATH
 
-cp -rf $DIR/themes/* $THEME_PATH
-cp -rf $DIR/icons/* $ICON_PATH
-cp -rf $DIR/64-language-selector-prefer.conf $LANG_SELECT_PATH
-cp -rf $DIR/fonts/* $FONT_PATH
+link themes  $HOME .themes
+link icons $HOME .icons
+link 64-language-selector-prefer.conf $HOME/.config/fontconfig/conf.d
+for font in $(ls -d fonts/*); do
+  link font $HOME/.fonts
+done
 fc-cache -f

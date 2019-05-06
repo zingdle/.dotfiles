@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cp -rf $DIR/.gitconfig $HOME
-cp -rf $DIR/.gitignore_global $HOME
+link .gitconfig $HOME
+link .gitignore_global $HOME

@@ -1,4 +1,6 @@
 #!/bin/bash
 
-mkdir -p $HOME/.config
-cp -rf $DIR/youtube-dl.conf $HOME/.config/youtube-dl.conf
+YOUTUBEDL_CONF_DIR=$HOME/.config
+
+mkdir -p $YOUTUBEDL_CONF_DIR
+link youtube-dl.conf $YOUTUBEDL_CONF_DIR

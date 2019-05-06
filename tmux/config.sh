@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cp -rf $DIR/.tmux.conf $HOME
+link .tmux.conf $HOME

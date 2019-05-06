@@ -1,4 +1,6 @@
 #!/bin/bash
 
-mkdir -p $HOME/.pip
-cp -rf $DIR/pip.conf $HOME/.pip
+PIPCONF_DIR= $HOME/.pip
+
+mkdir -p $PIPCONF_DIR
+link pip.conf $PIPCONF_DIR

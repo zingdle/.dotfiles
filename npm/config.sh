@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cp -rf $DIR/.npmrc $HOME
+link .npmrc $HOME
