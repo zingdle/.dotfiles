@@ -26,12 +26,18 @@ function link() {
   # https://unix.stackexchange.com/questions/114402/inline-conditionals-for-assignment
   [[ -z ${DST_FILE} ]] && DST_PATH=${DST_DIR}/$SRC_FILE || DST_PATH=${DST_DIR}/${DST_FILE}
 
-  if [[ (-d ${DST_PATH} || -f ${DST_PATH}) && $OVERRIDE = false ]]; then
-    [[ $VERBOSE = true ]] && echo ${DST_PATH} exists, skipping...
-  else
-    [[ $VERBOSE = true ]] && echo linking ${SRC_PATH} "->" ${DST_PATH}
-    ln -sf ${SRC_PATH} ${DST_PATH}
+  if [[ -d ${DST_PATH} || -f ${DST_PATH} ]]; then
+    if [[ $OVERRIDE == true ]]; then
+      [[ $VERBOSE = true ]] && echo removing ${DST_PATH}
+      rm -rf ${DST_PATH}
+    else
+      [[ $VERBOSE = true ]] && echo ${DST_PATH} exists, skipping...
+      return
+    fi
   fi
+
+  [[ $VERBOSE = true ]] && echo linking ${SRC_PATH} "->" ${DST_PATH}
+  ln -snf ${SRC_PATH} ${DST_PATH}
 }
 
 
@@ -45,8 +51,10 @@ if [[ ! -d $HOME/.oh-my-zsh ]]; then
   exit
 fi
 
+[[ $VERBOSE = true ]] && echo
 for config in **/config.sh; do
   SRC_DIR=$DOTFILES_ROOT/$(dirname $config)
   [[ $VERBOSE = true ]] && echo running $SRC_DIR
   source ${config}
+  [[ $VERBOSE = true ]] && echo
 done
