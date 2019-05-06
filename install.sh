@@ -37,6 +37,7 @@ function link() {
   fi
 
   [[ $VERBOSE = true ]] && echo linking ${SRC_PATH} "->" ${DST_PATH}
+  # https://superuser.com/questions/645842/how-to-overwrite-a-symbolic-link-of-a-directory
   ln -snf ${SRC_PATH} ${DST_PATH}
 }
 
