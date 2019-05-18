@@ -101,3 +101,5 @@ source $ZSH/oh-my-zsh.sh
 chpwd() {
   ls
 }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
