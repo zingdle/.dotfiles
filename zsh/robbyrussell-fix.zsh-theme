@@ -22,6 +22,7 @@ function precmd() {
     elif [ "$elapsed" -gt 60 ] && [ "$hour" -eq 0 ]; then
       timer_show="%F{yellow}${min}m ${sec}s"
     else
+      min=$(($min%60))
       timer_show="%F{red}${hour}h ${min}m ${sec}s"
     fi
 
