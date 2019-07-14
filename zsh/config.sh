@@ -1,6 +1,7 @@
 #!/bin/bash
 
 link .zshrc $HOME
+link .profile $HOME
 link .zprofile $HOME
 link robbyrussell-fix.zsh-theme $ZSH/custom/themes
 
