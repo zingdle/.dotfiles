@@ -16,4 +16,4 @@ export PATH=$CUDA_PATH/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=$CUDA_PATH/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 # linuxbrew
-eval $($HOME/.linuxbrew/bin/brew shellenv)
+[ -f $HOME/.linuxbrew/bin/brew ] && eval $($HOME/.linuxbrew/bin/brew shellenv)

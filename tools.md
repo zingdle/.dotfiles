@@ -1,5 +1,11 @@
 # tools
 
+## oh-my-zsh
+
+```bash
+$ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+```
+
 ## fzf
 
 ```bash
@@ -9,6 +15,12 @@ $ ~/.fzf/install
 
 ## diff-so-fancy
 
-```
+```bash
 $ npm install -g diff-so-fancy
+```
+
+## linuxbrew
+
+```bash
+$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 ```
