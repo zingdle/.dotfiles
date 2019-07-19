@@ -3,7 +3,7 @@
 	email = zingdle@gmail.com
 [core]
 	editor = vim
-	excludesfile = /home/zingdle/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [alias]
 	save = "!f() { git add . && git commit -m\"save\"; }; f"
