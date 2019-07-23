@@ -26,7 +26,7 @@ function precmd() {
       timer_show="%F{red}${hour}h ${min}m ${sec}s"
     fi
 
-    export RPROMPT="${timer_show} %{$reset_color%}%D %T@%m"
+    export RPROMPT="%m %D %T ${timer_show} %{$reset_color%}"
     unset timer
   fi
 }
