@@ -9,6 +9,8 @@ export EDITOR=vim
 # .local
 export PATH=$HOME/.local/bin:$PATH
 
+[ -f $HOME/.secretrc ] && source $HOME/.secretrc
+
 # cuda
 [ -d /usr/local/cuda ] && CUDA_PATH=/usr/local/cuda
 [ -d $HOME/.local/cuda ] && CUDA_PATH=$HOME/.local/cuda
