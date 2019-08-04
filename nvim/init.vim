@@ -123,6 +123,9 @@ cnoremap <expr> j getcmdline()[getcmdpos()-2] ==# 'j' ? "\<BS>\<C-c>" : 'j'
 inoremap j<Space> j
 cnoremap j<Space> j
 
+" save file as root
+command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+
 " vim-gitgutter
 set updatetime=100
 
