@@ -62,6 +62,7 @@ plugins=(
   extract
   z
   git
+  docker
   tmux
   zsh-autosuggestions
   zsh-syntax-highlighting
@@ -97,6 +98,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias e=emacs
 
 # Automatic ls when changing dirs
 chpwd() {
