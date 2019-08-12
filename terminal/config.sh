@@ -1,3 +1,3 @@
 #!/bin/bash
 
-tic -x -o ~/.terminfo xterm-24bit.terminfo
+tic -x -o ~/.terminfo ${SRC_DIR}/xterm-24bit.terminfo
