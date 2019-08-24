@@ -99,6 +99,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias e="TERM=xterm-24bit emacs"
+alias v="vim -u NONE"
 
 # Automatic ls when changing dirs
 chpwd() {
