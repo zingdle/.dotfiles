@@ -98,7 +98,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias e=emacs
+alias e="TERM=xterm-24bit emacs"
 
 # Automatic ls when changing dirs
 chpwd() {
