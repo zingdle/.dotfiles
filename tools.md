@@ -33,3 +33,9 @@ brew install diff-so-fancy
 ```bash
 npm install -g diff-so-fancy
 ```
+
+## ripgrep
+
+```bash
+brew install ripgrep
+```
