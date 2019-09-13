@@ -42,6 +42,15 @@ function link() {
 }
 
 
+function source_config() {
+  config=$1
+  SRC_DIR=$DOTFILES_ROOT/$(dirname $config)
+  [[ $VERBOSE = true ]] && echo running $SRC_DIR
+  source ${config}
+  [[ $VERBOSE = true ]] && echo
+}
+
+
 echo OVERRIDE: $OVERRIDE
 echo VERBOSE: $VERBOSE
 
@@ -52,10 +61,12 @@ if [[ ! -d $HOME/.oh-my-zsh ]]; then
   exit
 fi
 
+
 [[ $VERBOSE = true ]] && echo
-for config in **/config.sh; do
-  SRC_DIR=$DOTFILES_ROOT/$(dirname $config)
-  [[ $VERBOSE = true ]] && echo running $SRC_DIR
-  source ${config}
-  [[ $VERBOSE = true ]] && echo
-done
+if [[ ! -z $1 && -f $1/config.sh ]]; then
+  source_config $1/config.sh
+else
+  for config in **/config.sh; do
+    source_config $config
+  done
+fi
