@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ps -ef | sed 1d | fzf -m --header='[find:process]' | awk '{print $2}'
