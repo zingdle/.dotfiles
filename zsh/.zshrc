@@ -107,4 +107,7 @@ chpwd() {
   ls
 }
 
+# Get Ctrl-U back
+bindkey \^U backward-kill-line
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
