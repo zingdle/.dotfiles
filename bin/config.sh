@@ -5,3 +5,4 @@ mkdir -p $BINPATH
 
 link kp $BINPATH
 link fp $BINPATH
+link gdbp $BINPATH
