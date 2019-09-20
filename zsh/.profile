@@ -8,6 +8,7 @@ export EDITOR=vim
 
 # linuxbrew
 [ -f $HOME/.linuxbrew/bin/brew ] && eval $($HOME/.linuxbrew/bin/brew shellenv)
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 # .local
 export PATH=$HOME/.local/bin:$PATH
