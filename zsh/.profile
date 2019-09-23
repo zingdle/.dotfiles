@@ -7,7 +7,14 @@ export LANGUAGE=en_US.UTF-8
 export EDITOR=vim
 
 # linuxbrew
-[ -f $HOME/.linuxbrew/bin/brew ] && eval $($HOME/.linuxbrew/bin/brew shellenv)
+# [ -f $HOME/.linuxbrew/bin/brew ] && eval $($HOME/.linuxbrew/bin/brew shellenv)
+export BREW=$HOME/.linuxbrew
+export HOMEBREW_PREFIX="$BREW"
+export HOMEBREW_CELLAR="$BREW/Cellar"
+export HOMEBREW_REPOSITORY="$BREW/Homebrew"
+# export PATH="$BREW/bin:$BREW/sbin:$PATH"
+# export MANPATH="$BREW/share/man:$MANPATH"
+# export INFOPATH="$BREW/share/info:$INFOPATH"
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 # .local
