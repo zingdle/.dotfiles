@@ -1,3 +1,3 @@
 #!/bin/bash
 
-PATH="$BREW/bin:$PATH" $BREW/bin/brew "$@"
+PATH="$BREW/bin:$BREW/sbin:$PATH" $BREW/bin/brew "$@"
