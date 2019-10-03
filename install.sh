@@ -55,12 +55,15 @@ echo OVERRIDE: $OVERRIDE
 echo VERBOSE: $VERBOSE
 
 must git
+
 if [[ ! -d $HOME/.oh-my-zsh ]]; then
   echo oh-my-zsh not installed, try this first...
   echo 'sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"'
   exit
 fi
 
+[[ ! -f $HOME/.secretrc ]] && touch $HOME/.secretrc
+chmod 600 $HOME/.secretrc
 
 [[ $VERBOSE = true ]] && echo
 if [[ ! -z $1 && -f $1/config.sh ]]; then
