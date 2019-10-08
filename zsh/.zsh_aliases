@@ -1,0 +1,4 @@
+# editor
+alias e="TERM=xterm-24bit emacs"
+alias v="vim"
+alias vl="vim -u $HOME/.lightvimrc"

@@ -98,9 +98,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias e="TERM=xterm-24bit emacs"
-alias v="vim"
-alias vl="vim -u $HOME/.lightvimrc"
+
+source $HOME/.zsh_aliases
+source $HOME/.zsh_functions
 
 # Automatic ls when changing dirs
 chpwd() {
