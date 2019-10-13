@@ -13,20 +13,20 @@ function preexec() {
 function precmd() {
   if [ $timer ]; then
     elapsed=$(($SECONDS - $timer))
-      hour=$((elapsed/3600))
-      min=$((elapsed/60))
-      sec=$((elapsed%60))
+    hour=$((elapsed/3600))
+    min=$((elapsed/60))
+    sec=$((elapsed%60))
 
-      if [ "$elapsed" -le 60 ] ; then
-        timer_show="%F{green}${elapsed}s"
-          elif [ "$elapsed" -gt 60 ] && [ "$hour" -eq 0 ]; then
-          timer_show="%F{yellow}${min}m ${sec}s"
-      else
-        min=$(($min%60))
-          timer_show="%F{red}${hour}h ${min}m ${sec}s"
-          fi
+    if [ "$elapsed" -le 60 ] ; then
+      timer_show="%F{green}${elapsed}s"
+    elif [ "$elapsed" -gt 60 ] && [ "$hour" -eq 0 ]; then
+      timer_show="%F{yellow}${min}m ${sec}s"
+    else
+      min=$(($min%60))
+      timer_show="%F{red}${hour}h ${min}m ${sec}s"
+    fi
 
-          export RPROMPT="%m %D{%m/%d} %T ${timer_show} %{$reset_color%}"
-          unset timer
-          fi
+    export RPROMPT="%m %D{%m/%d} %T ${timer_show} %{$reset_color%}"
+    unset timer
+  fi
 }
