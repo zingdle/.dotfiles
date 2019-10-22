@@ -111,3 +111,5 @@ chpwd() {
 bindkey \^U backward-kill-line
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[ -f $HOME/.conda.zsh ] && source $HOME/.conda.zsh
