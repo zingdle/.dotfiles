@@ -14,3 +14,7 @@ fi
 if [ ! -d $ZSH/custom/plugins/zsh-syntax-highlighting ]; then
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH/custom/plugins/zsh-syntax-highlighting
 fi
+
+if [ ! -d $ZSH/custom/plugins/fast-syntax-highlighting ]; then
+  git clone https://github.com/zdharma/fast-syntax-highlighting.git $ZSH/custom/plugins/fast-syntax-highlighting
+fi
