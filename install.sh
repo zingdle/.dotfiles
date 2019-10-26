@@ -43,8 +43,8 @@ function link() {
 
 
 function source_config() {
-  config=$1
-  SRC_DIR=$DOTFILES_ROOT/$(dirname $config)
+  CONFIG=$1
+  SRC_DIR=$DOTFILES_ROOT/$(dirname $CONFIG)
   [[ $VERBOSE = true ]] && echo running $SRC_DIR
   source ${config}
   [[ $VERBOSE = true ]] && echo
@@ -66,10 +66,17 @@ fi
 chmod 600 $HOME/.secretrc
 
 [[ $VERBOSE = true ]] && echo
-if [[ ! -z $1 && -f $1/config.sh ]]; then
-  source_config $1/config.sh
-else
-  for config in **/config.sh; do
-    source_config $config
+
+if [[ -z $1 ]]; then
+  # ./install.sh
+  for CONFIG in **/config.sh; do
+    source_config $CONFIG
   done
+else
+  # ./install.sh <DIR>
+  if [[ -f $1/config.sh ]]; then
+    source_config $1/config.sh
+  else
+    [[ $VERBOSE = true ]] && echo $1/config.sh not exists, skipping...
+  fi
 fi
