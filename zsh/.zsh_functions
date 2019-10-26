@@ -13,3 +13,38 @@ function upx {
   unset ALL_PROXY
   curl ifconfig.co/json
 }
+
+
+# brew
+function brew {
+  PATH="$BREW/bin:$BREW/sbin:$PATH" $BREW/bin/brew "$@"
+}
+
+function brlk {
+  ln -s $BREW/bin/$1 $HOME/.local/bin/$1
+}
+
+
+# process
+function fp {
+  ps -ef | sed 1d | fzf -m --header='[find:process]' | awk '{print $2}'
+}
+
+function kp {
+  tty=$(tty)
+
+  if [ "$UID" != "0" ]; then
+    pid=$(ps -f -u $UID | sed 1d | fzf -m --header='[kill:process]' | awk '{print $2}')
+  else
+    pid=$(ps -ef | sed 1d | fzf -m --header='[kill:process]' | awk '{print $2}')
+  fi
+
+  if [ "x$pid" != "x" ]; then
+    echo $pid | tee $tty | xargs kill -${1:-9}
+  fi
+}
+
+function gdbp {
+  PID=$(ps -ef | sed 1d | fzf --header='[attach:process]' | awk '{print $2}')
+  [[ ! -z "$PID" ]] && gdb -p $PID
+}

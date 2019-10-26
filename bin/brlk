@@ -1,3 +1,0 @@
-#!/bin/bash
-
-ln -s $BREW/bin/$1 $HOME/.local/bin/$1

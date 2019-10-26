@@ -8,7 +8,9 @@ export EDITOR=vim
 
 # linuxbrew
 # [ -f $HOME/.linuxbrew/bin/brew ] && eval $($HOME/.linuxbrew/bin/brew shellenv)
-export BREW=$HOME/.linuxbrew
+[ -d /home/linuxbrew/.linuxbrew ] && BREW=/home/linuxbrew/.linuxbrew
+[ -d $HOME/.linuxbrew ] && BREW=$HOME/.linuxbrew
+export BREW
 export HOMEBREW_PREFIX="$BREW"
 export HOMEBREW_CELLAR="$BREW/Cellar"
 export HOMEBREW_REPOSITORY="$BREW/Homebrew"

@@ -39,3 +39,15 @@ npm install -g diff-so-fancy
 ```bash
 brew install ripgrep
 ```
+
+## fd
+
+```bash
+brew install fd
+```
+
+## neovim
+
+```bash
+brew install neovim
+```

@@ -1,5 +1,0 @@
-#!/bin/bash
-
-PID=$(ps -ef | sed 1d | fzf --header='[attach:process]' | awk '{print $2}')
-
-[[ ! -z "$PID" ]] && gdb -p $PID
