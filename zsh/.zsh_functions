@@ -48,3 +48,10 @@ function gdbp {
   PID=$(ps -ef | sed 1d | fzf --header='[attach:process]' | awk '{print $2}')
   [[ ! -z "$PID" ]] && gdb -p $PID
 }
+
+
+# http server
+function server {
+  hostname -I
+  python3 -m http.server || python -m SimpleHTTPServer || echo doing nothing...
+}
