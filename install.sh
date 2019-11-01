@@ -46,7 +46,7 @@ function source_config() {
   CONFIG=$1
   SRC_DIR=$DOTFILES_ROOT/$(dirname $CONFIG)
   [[ $VERBOSE = true ]] && echo running $SRC_DIR
-  source ${config}
+  source ${CONFIG}
   [[ $VERBOSE = true ]] && echo
 }
 
