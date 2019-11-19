@@ -21,6 +21,7 @@ function brew {
 }
 
 function brlk {
+  mkdir -p $HOME/.local/bin
   ln -s $BREW/bin/$1 $HOME/.local/bin/$1
 }
 
