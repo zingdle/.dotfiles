@@ -2,6 +2,13 @@
 alias e="TERM=xterm-24bit emacs"
 alias v="vim"
 alias vl="vim -u $HOME/.lightvimrc"
+
+# python
 alias py="python"
 alias py3="python3"
+
+# x
 alias open="xdg-open"
+
+# history
+alias h="history"
