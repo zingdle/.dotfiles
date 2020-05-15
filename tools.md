@@ -1,11 +1,5 @@
 # tools
 
-## Ubuntu 20.04
-
-```bash
-sudo apt install zsh git neovim ripgrep fd-find
-```
-
 ## oh-my-zsh
 
 ```bash
