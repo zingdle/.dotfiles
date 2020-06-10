@@ -64,6 +64,7 @@ plugins=(
   extract
   z
   tmux
+  ssh-agent
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
