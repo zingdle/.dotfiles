@@ -1,5 +1,11 @@
 # tools
 
+## mirror
+
+```bash
+sudo sed -i 's/archive.ubuntu.com/mirrors.sjtug.sjtu.edu.cn/g' /etc/apt/sources.list
+```
+
 ## oh-my-zsh
 
 ```bash
