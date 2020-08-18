@@ -4,7 +4,7 @@
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = "pre=$(which diff-so-fancy); ${pre:-cat} | less --tabs=4 -RFX"
 [alias]
 	update = "!f() { git add . && git commit -m\"update\"; }; f"
 	squash-all = "!f(){ git reset $(git commit-tree HEAD^{tree} -m \"${1:-A new start}\");};f"
