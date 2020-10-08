@@ -119,5 +119,3 @@ zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-[ -f $HOME/.conda.zsh ] && source $HOME/.conda.zsh
