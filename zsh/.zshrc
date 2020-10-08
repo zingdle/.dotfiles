@@ -114,6 +114,10 @@ bindkey \^U backward-kill-line
 # ssh agent forwarding
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
+# conda
+[ -f $HOME/.conda.zsh ] && source $HOME/.conda.zsh
+
+# fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [ -f $HOME/.conda.zsh ] && source $HOME/.conda.zsh
