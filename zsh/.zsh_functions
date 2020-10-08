@@ -21,8 +21,62 @@ function brew {
 }
 
 function brlk {
-  mkdir -p $HOME/.local/bin
-  ln -s $BREW/bin/$1 $HOME/.local/bin/$1
+  # https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash
+  local BREW_BIN_PATH=$HOME/.local/brewbin
+  mkdir -p $BREW_BIN_PATH
+
+  local _usage="
+    brlk [OPTIONS]
+
+    Options:
+    -h,  --help                   show help info
+    -l,  --list                   list installed binary
+    -b,  --list-brew              list installed brew binary
+    -i,  --install <binary        instal binary
+    -d,  --delete <binary>        delete binary
+    "
+
+  while [[ $# -gt 0 ]]; do
+    key="$1"
+
+    case $key in
+      # help
+      -h|--help)
+      echo $_usage
+      shift
+      ;;
+      # list linked binary
+      -l|--list)
+      ls $BREW_BIN_PATH
+      shift
+      ;;
+      # list all installed package
+      -b|--list-brew)
+      brew list
+      shift
+      ;;
+      # install binary
+      -i|--install)
+      BIN="$2"
+      [ -f $BREW/bin/$BIN ] && ln -s $BREW/bin/$BIN $BREW_BIN_PATH/$BIN
+      [ -f $BREW/sbin/$BIN ] && ln -s $BREW/sbin/$BIN $BREW_BIN_PATH
+      [ ! -f $BREW_BIN_PATH/$BIN ] && echo "not a valid program"
+      shift 2
+      ;;
+      # delete binary
+      -d|--delete)
+      BIN="$2"
+      rm -f $BREW_BIN_PATH/$BIN
+      shift 2
+      ;;
+      # unknown
+      *)
+      echo "unknow option $1"
+      echo $_usage
+      shift
+      ;;
+    esac
+  done
 }
 
 

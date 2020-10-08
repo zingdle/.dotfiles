@@ -19,8 +19,9 @@ export HOMEBREW_REPOSITORY="$BREW/Homebrew"
 # export INFOPATH="$BREW/share/info:$INFOPATH"
 export HOMEBREW_NO_AUTO_UPDATE=1
 
-# .local
+# path
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/brewbin:$PATH
 
 # cuda
 [ -d /usr/local/cuda ] && CUDA_PATH=/usr/local/cuda
