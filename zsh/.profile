@@ -30,11 +30,10 @@ export PATH=$CUDA_PATH/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=$CUDA_PATH/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 # go
-# export GOPATH=$HOME/.go
-# export GOROOT=$(brew --prefix golang)/libexec
-# export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
-# export GO111MODULE=on
-# export GOPROXY=https://goproxy.io
+export GOPATH=$HOME/.go
+export PATH=$PATH:$GOPATH/bin
+export GO111MODULE=on
+export GOPROXY=https://goproxy.io
 
 # secret sauce
 source $HOME/.secretrc
