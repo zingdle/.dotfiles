@@ -35,5 +35,8 @@ export PATH=$PATH:$GOPATH/bin
 export GO111MODULE=on
 export GOPROXY=https://goproxy.io
 
+# rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # secret sauce
 source $HOME/.secretrc
