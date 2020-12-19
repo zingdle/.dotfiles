@@ -58,7 +58,7 @@ must git
 
 if [[ ! -d $HOME/.oh-my-zsh ]]; then
   echo oh-my-zsh not installed, try this first...
-  echo 'sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"'
+  echo 'sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
   exit
 fi
 
