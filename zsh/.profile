@@ -32,11 +32,11 @@ export LD_LIBRARY_PATH=$CUDA_PATH/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 # go
 export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin
-export GO111MODULE=on
+export GO111MODULE=auto
 export GOPROXY=https://goproxy.io
 
 # rust
-export PATH="$HOME/.cargo/bin:$PATH"
+source "$HOME/.cargo/env"
 
 # secret sauce
 source $HOME/.secretrc
