@@ -111,6 +111,11 @@ chpwd() {
 # Get Ctrl-U back
 bindkey \^U backward-kill-line
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# ssh agent forwarding
+zstyle :omz:plugins:ssh-agent agent-forwarding on
 
-[ -f $HOME/.conda.zsh ] && source $HOME/.conda.zsh
+# conda
+if [ -f $HOME/.conda.zsh ]; then source $HOME/.conda.zsh; fi
+
+# fzf
+if [ -f $HOME/.fzf.zsh ]; then source $HOME/.fzf.zsh; fi

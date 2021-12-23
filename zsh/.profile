@@ -19,8 +19,9 @@ export HOMEBREW_REPOSITORY="$BREW/Homebrew"
 # export INFOPATH="$BREW/share/info:$INFOPATH"
 export HOMEBREW_NO_AUTO_UPDATE=1
 
-# .local
+# path
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/brewbin:$PATH
 
 # cuda
 [ -d /usr/local/cuda ] && CUDA_PATH=/usr/local/cuda
@@ -29,11 +30,13 @@ export PATH=$CUDA_PATH/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=$CUDA_PATH/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 # go
-# export GOPATH=$HOME/.go
-# export GOROOT=$(brew --prefix golang)/libexec
-# export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
-# export GO111MODULE=on
-# export GOPROXY=https://goproxy.io
+export GOPATH=$HOME/.go
+export PATH=$PATH:$GOPATH/bin
+export GO111MODULE=auto
+export GOPROXY=https://goproxy.io
+
+# rust
+source "$HOME/.cargo/env"
 
 # secret sauce
 source $HOME/.secretrc
