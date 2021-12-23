@@ -36,7 +36,8 @@ export GO111MODULE=auto
 export GOPROXY=https://goproxy.io
 
 # rust
-source "$HOME/.cargo/env"
+RUST_ENV="$HOME/.cargo/env"
+[ -f ${RUST_ENV} ] && source ${RUST_ENV}
 
 # secret sauce
 source $HOME/.secretrc
