@@ -119,3 +119,6 @@ if [ -f $HOME/.conda.zsh ]; then source $HOME/.conda.zsh; fi
 
 # fzf
 if [ -f $HOME/.fzf.zsh ]; then source $HOME/.fzf.zsh; fi
+
+# pyenv
+if [ -f $HOME/.pyenv.zsh ]; then source $HOME/.pyenv.zsh; fi
