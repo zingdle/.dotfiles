@@ -31,7 +31,7 @@ export LD_LIBRARY_PATH=$CUDA_PATH/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 # go
 export GOPATH=$HOME/.go
-export PATH=$PATH:$GOPATH/bin
+export PATH=$GOPATH/bin:$PATH
 export GO111MODULE=auto
 export GOPROXY=https://goproxy.io
 
